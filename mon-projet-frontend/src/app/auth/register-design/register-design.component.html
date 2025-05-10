@@ -1,0 +1,170 @@
+
+
+<div class="bg-gray-50 min-h-screen flex items-center justify-center p-4 width-full">
+    <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-b-3xl z-0"></div>
+    
+    <div class="max-w-4xl w-full mx-auto z-10">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden md:flex">
+            <!-- Illustration Section -->
+            <div class="md:w-1/2 bg-gradient-to-br from-indigo-500 to-purple-600 p-10 flex flex-col justify-center items-center text-white relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                    <div class="absolute top-20 left-20 w-40 h-40 bg-white rounded-full animate-float"></div>
+                    <div class="absolute bottom-10 right-10 w-32 h-32 bg-white rounded-full animate-float" style="animation-delay: 0.5s;"></div>
+                    <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-white rounded-full animate-float" style="animation-delay: 1s;"></div>
+                </div>
+                <div class="relative z-10 text-center animate-fade-in" style="animation-delay: 0.2s;">
+                    <i class="fas fa-car-side text-6xl mb-6"></i>
+                    <h1 class="text-3xl font-bold mb-4">Rejoignez notre communauté</h1>
+                    <p class="mb-6">Partagez vos trajets ou trouvez un covoiturage qui vous correspond. Économisez et voyagez ensemble.</p>
+                    <div class="flex justify-center space-x-4">
+                        <div class="w-3 h-3 bg-white rounded-full opacity-70"></div>
+                        <div class="w-3 h-3 bg-white rounded-full opacity-30"></div>
+                        <div class="w-3 h-3 bg-white rounded-full opacity-30"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Form Section -->
+            <div class="md:w-1/2 p-10 animate-fade-in" style="animation-delay: 0.4s;">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Créer un compte</h2>
+                <p class="text-gray-600 mb-8">Remplissez les informations ci-dessous pour vous inscrire</p>
+                
+                <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="space-y-6">
+
+                    <!-- Type d'utilisateur -->
+                    <div>
+                      <label class="block text-gray-700 mb-3">Vous êtes :</label>
+                      <div class="grid grid-cols-2 gap-4">
+                        <label class="radio-card bg-gray-50 border-2 border-gray-200 rounded-xl p-4 flex items-center cursor-pointer transition-all duration-300">
+                          <input type="radio" name="role" value="conducteur" [(ngModel)]="user.role" required class="hidden peer" #role="ngModel">
+                          <div class="w-6 h-6 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center peer-checked:border-indigo-500">
+                            <div class="w-3 h-3 rounded-full bg-indigo-500 hidden peer-checked:block"></div>
+                          </div>
+                          <div>
+                            <div class="font-medium text-gray-800">Conducteur</div>
+                            <div class="text-sm text-gray-500">Je propose des trajets</div>
+                          </div>
+                        </label>
+                  
+                        <label class="radio-card bg-gray-50 border-2 border-gray-200 rounded-xl p-4 flex items-center cursor-pointer transition-all duration-300">
+                          <input type="radio" name="role" value="passager" [(ngModel)]="user.role" required class="hidden peer">
+                          <div class="w-6 h-6 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center peer-checked:border-indigo-500">
+                            <div class="w-3 h-3 rounded-full bg-indigo-500 hidden peer-checked:block"></div>
+                          </div>
+                          <div>
+                            <div class="font-medium text-gray-800">Passager</div>
+                            <div class="text-sm text-gray-500">Je cherche des trajets</div>
+                          </div>
+                        </label>
+                      </div>
+                      <div *ngIf="role.invalid && registerForm.submitted" class="text-red-500 text-sm mt-1">
+                        Rôle requis
+                      </div>
+                    </div>
+                  
+                    <!-- Nom -->
+                    <div>
+                      <label for="username" class="block text-gray-700 mb-2">Nom complet</label>
+                      <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input type="text" id="username" name="username" [(ngModel)]="user.username" required #username="ngModel"
+                          class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                          placeholder="Votre nom complet"
+                          [ngClass]="{ 'border-red-500': username.invalid && registerForm.submitted }"
+                        />
+                      </div>
+                      <div *ngIf="username.invalid && registerForm.submitted" class="text-sm text-red-500 mt-1">
+                        Nom requis
+                      </div>
+                    </div>
+                  
+                    <!-- Email -->
+                    <div>
+                      <label for="email" class="block text-gray-700 mb-2">Adresse email</label>
+                      <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input type="email" id="email" name="email" [(ngModel)]="user.email" required #email="ngModel"
+                          class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                          placeholder="votre@email.com"
+                          [ngClass]="{ 'border-red-500': email.invalid && registerForm.submitted }"
+                        />
+                      </div>
+                      <div *ngIf="email.invalid && registerForm.submitted" class="text-sm text-red-500 mt-1">
+                        Email requis
+                      </div>
+                    </div>
+                  
+                    <!-- Mot de passe -->
+                    <div>
+                      <label for="password" class="block text-gray-700 mb-2">Mot de passe</label>
+                      <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" name="password" [(ngModel)]="user.password" required minlength="8"
+                          #password="ngModel"
+                          class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                          placeholder="••••••••"
+                          [ngClass]="{ 'border-red-500': password.invalid && registerForm.submitted }"
+                        />
+                      </div>
+                      <div *ngIf="password.invalid && registerForm.submitted" class="text-sm text-red-500 mt-1">
+                        Mot de passe requis (8 caractères minimum)
+                      </div>
+                    </div>
+                  
+                    <!-- Téléphone -->
+                    <div>
+                      <label for="telephone" class="block text-gray-700 mb-2">Téléphone</label>
+                      <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <i class="fas fa-phone text-gray-400"></i>
+                        </div>
+                        <input type="tel" id="telephone" name="telephone"  required 
+                          class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                          placeholder="+216 xx xxx xxx"
+                          
+                        />
+                      </div>
+                    
+                    </div>
+                  
+                    <!-- Conditions -->
+                    <div class="flex items-start">
+                      <div class="flex items-center h-5">
+                        <input id="terms" name="terms" type="checkbox"  required 
+                          class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                      </div>
+                      <div class="ml-3 text-sm">
+                        <label for="terms" class="font-medium text-gray-700">
+                          J'accepte les <a href="#" class="text-indigo-600 hover:text-indigo-500">conditions</a> et la
+                          <a href="#" class="text-indigo-600 hover:text-indigo-500">politique</a>
+                        </label>
+                      </div>
+                    </div>
+                    
+                  
+                    <!-- Submit -->
+                    <button type="submit"
+                      class="bg-indigo-600 text-white py-3 px-4 rounded-lg font-semibold shadow-md hover:bg-indigo-700 transition duration-300 w-full"
+                      [disabled]="registerForm.invalid">
+                      S'inscrire
+                    </button>
+                  
+                    <!-- Lien de connexion -->
+                    <div class="text-center text-sm text-gray-600">
+                      Vous avez déjà un compte ?
+                      <a href="/login" class="text-indigo-600 font-medium hover:text-indigo-500">Connectez-vous</a>
+                    </div>
+                  </form>
+                  
+            </div>
+        </div>
+    </div>
+
+    
+</div>

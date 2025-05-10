@@ -35,72 +35,98 @@ exports.publierTrajet = async (req, res) => {
 };
 exports.rechercherTrajet = async (req, res) => {
   try {
-    const { requete } = req.body;
+    const { requete, filtres } = req.body;
 
-    // Analyser la requête du passager
     const response = await nlpManager.process('fr', requete);
-
-    // Afficher les entités extraites pour débogage
     console.log('Entités extraites:', response.entities);
 
-    // Extraire les entités de la requête
     const villeDepart = response.entities.find((e) => e.entity === 'villeDepart')?.option;
     const villeArrivee = response.entities.find((e) => e.entity === 'villeArrivee')?.option;
-    const momentJournee = response.entities.find((e) => e.entity === 'moment')?.option;
 
-    // Vérifier si les villes de départ et d'arrivée sont présentes dans la requête
     if (!villeDepart || !villeArrivee) {
       return res.status(400).json({ message: 'Veuillez préciser à la fois la ville de départ et la ville d\'arrivée.' });
     }
 
-    // Affichage des valeurs extraites pour vérification
-    console.log('Ville de départ:', villeDepart);
-    console.log('Ville d\'arrivée:', villeArrivee);
-    console.log('Moment de la journée:', momentJournee);
+    const tri = filtres?.tri;
+    const heureDepart = filtres?.heureDepart;
 
-    let dateFormatStart, dateFormatEnd;
+    // Création de la requête MongoDB de base
+    const query = {
+      depart: { $regex: new RegExp(villeDepart, 'i') },
+      arrivee: { $regex: new RegExp(villeArrivee, 'i') }
+    };
 
-    // Calculer l'heure de départ en fonction de "matin", "après-midi", "soir"
-    if (momentJournee === 'matin') {
-      dateFormatStart = moment().add(1, 'days').startOf('day').set('hours', 6).toDate(); // 6:00 AM
-      dateFormatEnd = moment().add(1, 'days').startOf('day').set('hours', 12).toDate(); // 12:00 PM
-    } else if (momentJournee === 'après-midi') {
-      dateFormatStart = moment().add(1, 'days').startOf('day').set('hours', 12).toDate(); // 12:00 PM
-      dateFormatEnd = moment().add(1, 'days').startOf('day').set('hours', 18).toDate(); // 6:00 PM
-    } else if (momentJournee === 'soir') {
-      dateFormatStart = moment().add(1, 'days').startOf('day').set('hours', 18).toDate(); // 6:00 PM
-      dateFormatEnd = moment().add(1, 'days').startOf('day').set('hours', 23).toDate(); // 11:59 PM
-    } else {
-      // Si aucune période n'est spécifiée, rechercher tout au long de la journée
-      dateFormatStart = moment().add(1, 'days').startOf('day').toDate();
-      dateFormatEnd = moment().add(1, 'days').endOf('day').toDate();
+    // Filtrage par tranche horaire (si définie)
+    if (heureDepart) {
+      const baseDate = moment().add(1, 'days').startOf('day');
+      let dateCondition = {};
+
+      switch (heureDepart) {
+        case 'avant06:00':
+          dateCondition = { $lt: baseDate.clone().hour(6).toDate() };
+          break;
+        case '06:00-12:00':
+          dateCondition = {
+            $gte: baseDate.clone().hour(6).toDate(),
+            $lt: baseDate.clone().hour(12).toDate()
+          };
+          break;
+        case '12:01-18:00':
+          dateCondition = {
+            $gte: baseDate.clone().hour(12).minute(1).toDate(),
+            $lt: baseDate.clone().hour(18).toDate()
+          };
+          break;
+        case 'apres18:00':
+          dateCondition = { $gte: baseDate.clone().hour(18).toDate() };
+          break;
+      }
+
+      query.dateDepart = dateCondition;
     }
 
-    // Affichage de la date de début et de fin pour vérification
-    console.log('Date de début:', dateFormatStart);
-    console.log('Date de fin:', dateFormatEnd);
-
-    // Vérification de la validité des dates
-    if (isNaN(dateFormatStart) || isNaN(dateFormatEnd)) {
-      return res.status(400).json({ message: 'Date invalide fournie.' });
+    // Tri selon le filtre
+    let sortOption = {};
+    switch (tri) {
+      case 'departPlusTot':
+        sortOption = { dateDepart: 1 };
+        break;
+      case 'prixPlusBas':
+        sortOption = { prix: 1 }; // Assure-toi d'avoir ajouté un champ prix dans le modèle
+        break;
+      default:
+        sortOption = {};
     }
 
-    // Recherche des trajets dans la base de données avec les villes de départ et d'arrivée
-    const trajets = await Trajet.find({
-      depart: { $regex: new RegExp(villeDepart, 'i') }, // Recherche insensible à la casse
-      arrivee: { $regex: new RegExp(villeArrivee, 'i') }, // Recherche insensible à la casse
-      dateDepart: { $gte: dateFormatStart, $lte: dateFormatEnd }
-    });
+    // Exécution de la requête
+    const trajets = await Trajet.find(query).sort(sortOption);
 
-    // Vérification si des trajets ont été trouvés
     if (trajets.length === 0) {
-      console.log('Aucun trajet trouvé de', villeDepart, 'à', villeArrivee, 'entre', dateFormatStart, 'et', dateFormatEnd);
+      console.log('Aucun trajet trouvé de', villeDepart, 'à', villeArrivee);
     }
-    
 
     res.status(200).json({ trajets });
+
   } catch (err) {
     console.error('Erreur lors de la recherche de trajet:', err.message);
     res.status(500).json({ message: 'Erreur serveur' });
   }
 };
+exports.getAllTrajets = async (req, res) => {
+  try {
+    const today = new Date();
+    const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    const trajets = await Trajet.find({
+      dateDepart: { $gte: midnight }
+    }).sort({ dateDepart: 1 });
+
+    res.status(200).json({ trajets });
+  } catch (err) {
+    console.error('Erreur lors de la récupération des trajets:', err.message);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+};
+
+
+

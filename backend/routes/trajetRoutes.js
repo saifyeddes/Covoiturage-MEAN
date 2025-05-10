@@ -6,5 +6,7 @@ const auth = require('../midlleware/authMiddleware'); // Vérifie également le 
 // Route protégée : conducteur connecté
 router.post('/publier', auth, trajetController.publierTrajet);
 router.post('/rechercher', trajetController.rechercherTrajet);
+router.get('/tous', trajetController.getAllTrajets);
+
 
 module.exports = router;
