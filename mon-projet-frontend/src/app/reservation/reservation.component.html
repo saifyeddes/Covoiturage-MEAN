@@ -1,0 +1,330 @@
+
+<div class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-car text-2xl"></i>
+                    <h1 class="text-2xl font-bold">ElegantCovoit</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="hover:text-gray-200 smooth-transition">Accueil</a>
+                    <a href="#" class="hover:text-gray-200 smooth-transition">Trajets</a>
+                    <a href="#" class="hover:text-gray-200 smooth-transition">Proposer un trajet</a>
+                    <a href="#" class="hover:text-gray-200 smooth-transition">Mon compte</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <span class="hidden md:block">Bonjour, Jean</span>
+                    <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Side - Ride Details -->
+            <div class="lg:w-2/3">
+                <!-- Progress Steps -->
+                <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-col items-center">
+                            <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center mb-2">
+                                <span>1</span>
+                            </div>
+                            <span class="text-sm font-medium text-purple-600">Détails du trajet</span>
+                        </div>
+                        <div class="h-1 flex-1 bg-purple-600 mx-2"></div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center mb-2">
+                                <span>2</span>
+                            </div>
+                            <span class="text-sm font-medium text-purple-600">Paiement</span>
+                        </div>
+                        <div class="h-1 flex-1 bg-gray-200 mx-2"></div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center mb-2">
+                                <span>3</span>
+                            </div>
+                            <span class="text-sm font-medium text-gray-500">Confirmation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ride Details Card -->
+                <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Détails du trajet</h2>
+                    
+                    <div class="flex items-start mb-8">
+                        <div class="flex flex-col items-center mr-4">
+                            <div class="timeline-dot rounded-full flex items-center justify-center"></div>
+                            <div class="timeline-line my-1"></div>
+                            <div class="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="mb-8">
+                                <p class="font-bold text-lg text-gray-800">Paris, Porte Maillot</p>
+                                <p class="text-gray-600">14 juin 2023 • 08:30</p>
+                                <p class="text-gray-500 text-sm mt-1">Parking du centre commercial</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">Lyon, Part-Dieu</p>
+                                <p class="text-gray-600">14 juin 2023 • 12:00</p>
+                                <p class="text-gray-500 text-sm mt-1">Devant la gare SNCF</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-500 text-sm">Durée</p>
+                            <p class="font-bold">3h30</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-500 text-sm">Distance</p>
+                            <p class="font-bold">465 km</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-500 text-sm">Places disponibles</p>
+                            <p class="font-bold">2/4</p>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-6">
+                        <h3 class="font-bold text-lg text-gray-800 mb-4">Options du trajet</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-music text-purple-600 mr-3"></i>
+                                <span>Musique autorisée</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-smoking-ban text-purple-600 mr-3"></i>
+                                <span>Non-fumeur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-paw text-purple-600 mr-3"></i>
+                                <span>Animaux acceptés</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-suitcase text-purple-600 mr-3"></i>
+                                <span>Bagages moyens</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Driver Details Card -->
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Votre conducteur</h2>
+                    
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6">
+                        <div class="relative">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Driver" class="w-24 h-24 rounded-full object-cover border-4 border-purple-100">
+                            <div class="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-md">
+                                <div class="bg-green-500 rounded-full p-1">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Jean Dupont</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="flex text-yellow-400 mr-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-gray-600">4.7 (128 avis)</span>
+                            </div>
+                            <p class="text-gray-600 mb-3">Membre depuis mars 2019 • 42 trajets effectués</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Pro vérifié</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Réponse rapide</span>
+                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Super conducteur</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-6">
+                        <h3 class="font-bold text-lg text-gray-800 mb-4">Véhicule</h3>
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-1">
+                                <img src="https://cdn.imagin.studio/getImage?customer=imgpl&make=peugeot&modelFamily=308&modelRange=hatchback&modelYear=2020&angle=01&zoomType=fullscreen" alt="Car" class="w-full h-auto rounded-lg">
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Peugeot 308</h4>
+                                <p class="text-gray-600 mb-4">Gris métallisé • 2019</p>
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-users text-purple-600 mr-2"></i>
+                                        <span>4 places</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-gas-pump text-purple-600 mr-2"></i>
+                                        <span>Diesel</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-leaf text-purple-600 mr-2"></i>
+                                        <span>Éco-friendly</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-shield-alt text-purple-600 mr-2"></i>
+                                        <span>Airbags</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-500 text-sm">Immatriculation : AB-123-CD</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-6">
+                        <h3 class="font-bold text-lg text-gray-800 mb-4">À propos de Jean</h3>
+                        <p class="text-gray-600 mb-4">Bonjour ! Je suis Jean, ingénieur informatique qui voyage régulièrement entre Paris et Lyon pour le travail. J'aime discuter de voyages, de technologie et de sport pendant le trajet. Ma voiture est toujours propre et confortable.</p>
+                        
+                        <h4 class="font-bold text-gray-800 mb-2">Langues parlées</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full">Français</span>
+                            <span class="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full">Anglais</span>
+                            <span class="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full">Espagnol</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Booking Summary -->
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-xl p-6 sticky top-6 card-shadow">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Résumé de la réservation</h2>
+                    
+                    <div class="border-b border-gray-200 pb-4 mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Trajet</span>
+                            <span class="font-medium">Paris → Lyon</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Date</span>
+                            <span class="font-medium">14 juin 2023</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Heure de départ</span>
+                            <span class="font-medium">08:30</span>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200 pb-4 mb-4">
+                        <h3 class="font-bold text-gray-800 mb-3">Passagers</h3>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">1 passager</span>
+                            <span class="font-medium">28,00 €</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Frais de service</span>
+                            <span class="font-medium">2,50 €</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-gray-800">Total</span>
+                            <span class="text-xl font-bold text-purple-600">30,50 €</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">Paiement sécurisé</p>
+                    </div>
+
+                    <button class="w-full gradient-bg text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 smooth-transition flex items-center justify-center space-x-2 mb-4">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Payer maintenant</span>
+                    </button>
+
+                    <div class="text-center text-gray-500 text-sm">
+                        <p>Annulation gratuite jusqu'à 24h avant le départ</p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-6 mt-6">
+                        <h3 class="font-bold text-gray-800 mb-3">Assurance trajet</h3>
+                        <div class="flex items-start mb-4">
+                            <input type="checkbox" id="insurance" class="mt-1 mr-3 rounded text-purple-600 focus:ring-purple-500">
+                            <label for="insurance" class="text-gray-600">
+                                <span class="font-medium">Assurance annulation (+2,50 €)</span>
+                                <p class="text-sm">Remboursement jusqu'à 100% en cas d'annulation</p>
+                            </label>
+                        </div>
+                        <a href="#" class="text-purple-600 text-sm font-medium flex items-center">
+                            <span>Plus d'informations</span>
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Help Section -->
+                <div class="bg-white rounded-xl p-6 mt-6 card-shadow">
+                    <h3 class="font-bold text-gray-800 mb-4">Besoin d'aide ?</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center text-gray-600 hover:text-purple-600 smooth-transition">
+                            <i class="fas fa-question-circle mr-3 text-purple-600"></i>
+                            <span>Centre d'aide</span>
+                        </a>
+                        <a href="#" class="flex items-center text-gray-600 hover:text-purple-600 smooth-transition">
+                            <i class="fas fa-comments mr-3 text-purple-600"></i>
+                            <span>Contacter le conducteur</span>
+                        </a>
+                        <a href="#" class="flex items-center text-gray-600 hover:text-purple-600 smooth-transition">
+                            <i class="fas fa-shield-alt mr-3 text-purple-600"></i>
+                            <span>Sécurité et confiance</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">ElegantCovoit</h3>
+                    <p class="text-gray-400">Voyagez malin, voyagez ensemble. Notre plateforme vous permet de trouver ou proposer des trajets en covoiturage facilement.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Rechercher un trajet</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Proposer un trajet</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Tarifs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Aide</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Centre d'aide</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Sécurité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">CGU</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-gray-400"></i> <a href="mailto:contact@elegantcovoit.com" class="text-gray-400 hover:text-white smooth-transition">contactelegantcovoit.com</a></li>
+                        <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-gray-400"></i> <span class="text-gray-400">01 23 45 67 89</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 ElegantCovoit. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+</div>

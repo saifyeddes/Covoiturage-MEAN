@@ -6,10 +6,11 @@ import { FooterComponent } from './footer/footer.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, HeaderComponent, FooterComponent],
+  imports: [RouterModule, HeaderComponent, FooterComponent, ],
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
 })

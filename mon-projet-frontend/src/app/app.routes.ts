@@ -11,6 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { DesignRechercheComponent } from './design-recherche/design-recherche.component';
 import { AvisConducteurComponent } from './avis-conducteur/avis-conducteur.component';
 import { RegisterDesignComponent } from './auth/register-design/register-design.component';
+import { ChatgptComponent } from './chatgpt/chatgpt.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -33,6 +35,8 @@ export const routes: Routes = [
   },
   { path: 'profilepassager', component: ProfileComponent },
   { path: 'designrecherche', component: DesignRechercheComponent },
+  { path: 'chatgpt', component: ChatgptComponent },
+   { path: 'reservation', component: ReservationComponent },
   { path: 'avisconducteur', component: AvisConducteurComponent },
   { path: 'register_design', component: RegisterDesignComponent, data: { isloginpage: true } },
 ];

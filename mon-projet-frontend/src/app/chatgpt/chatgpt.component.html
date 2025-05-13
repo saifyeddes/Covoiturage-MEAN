@@ -1,0 +1,15 @@
+<div class="chat-container">
+    <div class="messages">
+      <div *ngFor="let msg of messages" [ngClass]="msg.from">
+        <strong *ngIf="msg.from === 'user'">Vous :</strong>
+        <strong *ngIf="msg.from === 'bot'">Assistant :</strong>
+        {{ msg.text }}
+      </div>
+    </div>
+  
+    <div class="input-box">
+      <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Posez une question..." />
+      <button (click)="sendMessage()">Envoyer</button>
+    </div>
+  </div>
+  

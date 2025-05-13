@@ -35,7 +35,7 @@
 ],
 
 
-            "scripts": ["src/assets/js/admin.js","src/assets/js/recherche.js","src/assets/js/profile.js","src/assets/js/avis.js","src/assets/js/register_design.js"]
+            "scripts": ["src/assets/js/admin.js","src/assets/js/recherche.js","src/assets/js/profile.js","src/assets/js/avis.js","src/assets/js/register_design.js","src/assets/js/reservation.js"]
 
  
           },
