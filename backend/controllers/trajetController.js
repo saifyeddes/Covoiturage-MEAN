@@ -99,7 +99,10 @@ exports.rechercherTrajet = async (req, res) => {
     }
 
     // Exécution de la requête
-    const trajets = await Trajet.find(query).sort(sortOption);
+   const trajets = await Trajet.find(query)
+  .sort(sortOption)
+  .populate('conducteur', 'username email'); // <-- ici tu choisis les champs à ramener
+
 
     if (trajets.length === 0) {
       console.log('Aucun trajet trouvé de', villeDepart, 'à', villeArrivee);
@@ -118,8 +121,10 @@ exports.getAllTrajets = async (req, res) => {
     const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
     const trajets = await Trajet.find({
-      dateDepart: { $gte: midnight }
-    }).sort({ dateDepart: 1 });
+  dateDepart: { $gte: midnight }
+}).sort({ dateDepart: 1 })
+  .populate('conducteur', 'username email');
+
 
     res.status(200).json({ trajets });
   } catch (err) {

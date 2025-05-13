@@ -1,28 +1,7 @@
 
 <div class="font-sans bg-gray-50">
     <!-- Header -->
-    <header class="gradient-bg text-white">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-car text-2xl"></i>
-                    <h1 class="text-2xl font-bold">ElegantCovoit</h1>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#" class="hover:text-gray-200 smooth-transition">Accueil</a>
-                    <a href="#" class="hover:text-gray-200 smooth-transition">Trajets</a>
-                    <a href="#" class="hover:text-gray-200 smooth-transition">Proposer un trajet</a>
-                    <a href="#" class="hover:text-gray-200 smooth-transition">Mon compte</a>
-                </nav>
-                <div class="flex items-center space-x-4">
-                    <span class="hidden md:block">Bonjour, Jean</span>
-                    <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
@@ -57,38 +36,36 @@
 
                 <!-- Ride Details Card -->
                 <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Détails du trajet</h2>
-                    
-                    <div class="flex items-start mb-8">
-                        <div class="flex flex-col items-center mr-4">
-                            <div class="timeline-dot rounded-full flex items-center justify-center"></div>
-                            <div class="timeline-line my-1"></div>
-                            <div class="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-white text-xs"></i>
-                            </div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="mb-8">
-                                <p class="font-bold text-lg text-gray-800">Paris, Porte Maillot</p>
-                                <p class="text-gray-600">14 juin 2023 • 08:30</p>
-                                <p class="text-gray-500 text-sm mt-1">Parking du centre commercial</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-lg text-gray-800">Lyon, Part-Dieu</p>
-                                <p class="text-gray-600">14 juin 2023 • 12:00</p>
-                                <p class="text-gray-500 text-sm mt-1">Devant la gare SNCF</p>
-                            </div>
-                        </div>
-                    </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Détails du trajet</h2>
+
+        <div class="flex items-start mb-8">
+          <div class="flex flex-col items-center mr-4">
+            <div class="timeline-dot rounded-full flex items-center justify-center"></div>
+            <div class="timeline-line my-1"></div>
+            <div class="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center">
+              <i class="fas fa-map-marker-alt text-white text-xs"></i>
+            </div>
+          </div>
+          <div class="flex-1">
+            <div class="mb-8">
+              <p class="font-bold text-lg text-gray-800">{{ trajet.depart }}</p>
+              <p class="text-gray-600">{{ trajet.dateDepart | date:'fullDate' }} • {{ trajet.dateDepart | date:'shortTime' }}</p>
+            </div>
+            <div>
+              <p class="font-bold text-lg text-gray-800">{{ trajet.arrivee }}</p>
+              <p class="text-gray-600">{{ trajet.dateArrivee | date:'fullDate' }} • {{ trajet.dateArrivee | date:'shortTime' }}</p>
+            </div>
+          </div>
+        </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <p class="text-gray-500 text-sm">Durée</p>
-                            <p class="font-bold">3h30</p>
+                            <p class="font-bold">2h30</p>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <p class="text-gray-500 text-sm">Distance</p>
-                            <p class="font-bold">465 km</p>
+                            <p class="font-bold">100 km</p>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <p class="text-gray-500 text-sm">Places disponibles</p>
@@ -125,7 +102,7 @@
                     
                     <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6">
                         <div class="relative">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Driver" class="w-24 h-24 rounded-full object-cover border-4 border-purple-100">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Driver" class="w-24 h-24 rounded-full object-cover border-4 border-purple-100">
                             <div class="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-md">
                                 <div class="bg-green-500 rounded-full p-1">
                                     <i class="fas fa-check text-white text-xs"></i>
@@ -133,7 +110,7 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-gray-800">Jean Dupont</h3>
+                               <h3 class="text-xl font-bold text-gray-800">{{ trajet.conducteur.username }}</h3>
                             <div class="flex items-center mb-2">
                                 <div class="flex text-yellow-400 mr-3">
                                     <i class="fas fa-star"></i>
@@ -205,18 +182,18 @@
                     <h2 class="text-2xl font-bold text-gray-800 mb-6">Résumé de la réservation</h2>
                     
                     <div class="border-b border-gray-200 pb-4 mb-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-gray-600">Trajet</span>
-                            <span class="font-medium">Paris → Lyon</span>
-                        </div>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-gray-600">Date</span>
-                            <span class="font-medium">14 juin 2023</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-600">Heure de départ</span>
-                            <span class="font-medium">08:30</span>
-                        </div>
+                           <div class="flex justify-between items-center mb-2">
+        <span class="text-gray-600">Trajet</span>
+        <span class="font-medium">{{ trajet.depart }} → {{ trajet.arrivee }}</span>
+      </div>
+                         <div class="flex justify-between items-center mb-2">
+        <span class="text-gray-600">Date</span>
+        <span class="font-medium">{{ trajet.dateDepart | date:'d MMMM yyyy' }}</span>
+      </div>
+                       <div class="flex justify-between items-center">
+        <span class="text-gray-600">Heure de départ</span>
+        <span class="font-medium">{{ trajet.dateDepart | date:'HH:mm' }}</span>
+      </div>
                     </div>
 
                     <div class="border-b border-gray-200 pb-4 mb-4">
@@ -241,7 +218,7 @@
 
                     <button class="w-full gradient-bg text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 smooth-transition flex items-center justify-center space-x-2 mb-4">
                         <i class="fas fa-credit-card"></i>
-                        <span>Payer maintenant</span>
+                        <span>Reserver maintenant</span>
                     </button>
 
                     <div class="text-center text-gray-500 text-sm">
@@ -285,46 +262,19 @@
             </div>
         </div>
     </main>
+    <h2>Trajet sélectionné :</h2>
+<h2>Trajet sélectionné :</h2>
+<p><strong>De :</strong> {{ trajet.depart }}</p>
+<p><strong>À :</strong> {{ trajet.arrivee }}</p>
+<p><strong>Départ :</strong> {{ trajet.dateDepart | date:'fullDate' }} - {{ trajet.dateDepart | date:'shortTime' }}</p>
+<p><strong>Arrivée :</strong> {{ trajet.dateArrivee | date:'fullDate' }} - {{ trajet.dateArrivee | date:'shortTime' }}</p>
+
+<p><strong>Conducteur :</strong> {{ trajet.conducteur.username }} ({{ trajet.conducteur.email }})</p>
+
+
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 mt-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4">ElegantCovoit</h3>
-                    <p class="text-gray-400">Voyagez malin, voyagez ensemble. Notre plateforme vous permet de trouver ou proposer des trajets en covoiturage facilement.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Navigation</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Accueil</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Rechercher un trajet</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Proposer un trajet</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Tarifs</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Aide</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Centre d'aide</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Sécurité</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">Confidentialité</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white smooth-transition">CGU</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-gray-400"></i> <a href="mailto:contact@elegantcovoit.com" class="text-gray-400 hover:text-white smooth-transition">contactelegantcovoit.com</a></li>
-                        <li class="flex items-center"><i class="fas fa-phone-alt mr-2 text-gray-400"></i> <span class="text-gray-400">01 23 45 67 89</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>© 2023 ElegantCovoit. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
+
 
     
 </div>

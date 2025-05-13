@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';  // Import Router
 
 @Component({
   selector: 'app-recherchetrajet',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './recherchetrajet.component.html',
   styleUrls: ['./recherchetrajet.component.css'],
 })
@@ -17,7 +18,8 @@ export class RechercheTrajetComponent implements OnInit {
   showPassengerDropdown: boolean = false;
   trajets: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  // Inject Router into the constructor
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.getAllTrajets();
@@ -27,12 +29,21 @@ export class RechercheTrajetComponent implements OnInit {
     this.showPassengerDropdown = !this.showPassengerDropdown;
   }
 
+  stringify(obj: any): string {
+    return JSON.stringify(obj);
+  }
+
   handlePassengerDropdownClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (target.tagName === 'BUTTON' || target.closest('button')) {
       return;
     }
     this.togglePassengerDropdown();
+  }
+
+  reserver(trajet: any) {
+    // Navigate to the /reservation page with state
+    this.router.navigate(['/reservation'], { state: { trajet } });
   }
 
   incrementPassenger(count: number = 1) {
@@ -49,10 +60,10 @@ export class RechercheTrajetComponent implements OnInit {
     }
   }
 
-  // 🔹 Appelé lors du clic sur "Rechercher"
+  // Called on "Rechercher" button click
   onSearch() {
     if (!this.searchQuery.trim()) {
-      this.getAllTrajets(); // Si le champ est vide, on récupère tous les trajets
+      this.getAllTrajets(); // If search is empty, get all trajets
       return;
     }
 
@@ -62,25 +73,25 @@ export class RechercheTrajetComponent implements OnInit {
 
     this.http.post('http://localhost:5000/api/trajets/rechercher', requestPayload).subscribe(
       (response: any) => {
-        console.log('Réponse de la recherche de trajet:', response);
+        console.log('Response from search:', response);
         this.trajets = response.trajets;
       },
       (error) => {
-        console.error('Erreur lors de la recherche de trajet:', error);
-        alert('Une erreur est survenue. Veuillez réessayer.');
+        console.error('Error while searching for trajets:', error);
+        alert('An error occurred. Please try again.');
       }
     );
   }
 
-  // 🔹 Récupérer tous les trajets depuis le backend
+  // Get all trajets from backend
   getAllTrajets() {
     this.http.get('http://localhost:5000/api/trajets/tous').subscribe(
       (response: any) => {
-        console.log('Tous les trajets récupérés:', response);
+        console.log('All trajets retrieved:', response);
         this.trajets = response.trajets;
       },
       (error) => {
-        console.error('Erreur lors de la récupération des trajets:', error);
+        console.error('Error while retrieving trajets:', error);
       }
     );
   }
