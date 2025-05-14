@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Trajet = require('../models/trajet');
+const Reservation = require('../models/Reservation');
 
 const moment = require('moment');
 const nlpManager = require('../nlpManager'); 
@@ -132,6 +133,33 @@ exports.getAllTrajets = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 };
+exports.getHistorique = async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    // 1. Trajets publiés comme conducteur
+    const trajetsPublies = await Trajet.find({ conducteur: userId })
+      .populate('conducteur', 'username email')
+      .sort({ dateDepart: -1 });
+
+    // 2. Trajets réservés comme passager
+    const reservations = await Reservation.find({ passager: userId })
+      .populate({
+        path: 'trajet',
+        populate: { path: 'conducteur', select: 'username email' }
+      })
+      .sort({ dateReservation: -1 });
+
+    res.status(200).json({
+      trajetsPublies,
+      trajetsReserves: reservations
+    });
+  } catch (error) {
+    console.error("Erreur dans l'historique :", error.message);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+};
+
 
 
 

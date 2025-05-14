@@ -7,6 +7,7 @@ const auth = require('../midlleware/authMiddleware'); // Vérifie également le 
 router.post('/publier', auth, trajetController.publierTrajet);
 router.post('/rechercher', trajetController.rechercherTrajet);
 router.get('/tous', trajetController.getAllTrajets);
+router.get('/historique', auth, trajetController.getHistorique);
 
 
 module.exports = router;

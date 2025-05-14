@@ -41,7 +41,8 @@ export class ReservationComponent {
 
   const body = {
     trajetId: this.trajet._id,
-    nbPlaces: 1 // ou plus si tu ajoutes une saisie
+  nbPlaces: this.nbPlaces
+
   };
 
   this.http.post('http://localhost:5000/api/reservations/reserver', body, { headers })
