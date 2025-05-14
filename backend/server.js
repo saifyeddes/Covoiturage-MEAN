@@ -3,24 +3,25 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config(); // Charge les variables d'environnement
 
-const authRoutes = require('./routes/authRoutes'); // Importation des routes d'authentification
+const authRoutes = require('./routes/authRoutes'); // Auth routes
 const trajetRoutes = require('./routes/trajetRoutes');
-const chatRoutes = require('./routes/chatRoutes'); // ChatGPT route
+const chatRoutes = require('./routes/chatRoutes');
+const reservationRoutes = require('./routes/reservationRoutes'); // Réservations
 
-const app = express(); // <-- cette ligne doit être avant les `app.use(...)`
+const app = express(); // ✅ D'abord, on initialise Express
 
 // Middleware
 app.use(cors({ origin: 'http://localhost:4200' }));
-app.use(express.json()); // Pour analyser les corps de requêtes JSON
+app.use(express.json()); // Parse les corps JSON
 
 // Routes
-app.use('/api/auth', authRoutes); // Exemple : POST /api/auth/login
+app.use('/api/auth', authRoutes);
 app.use('/api/trajets', trajetRoutes);
-app.use('/api/chat', chatRoutes); // <-- maintenant c’est au bon endroit
+app.use('/api/chat', chatRoutes);
+app.use('/api/reservations', reservationRoutes); // ✅ Maintenant c’est OK ici
 
 // Vérifie que l'URI MongoDB est bien présente
 const mongoUri = process.env.MONGO_URI;
-
 if (!mongoUri) {
   console.error("❌ MONGO_URI est manquant dans le fichier .env");
   process.exit(1);

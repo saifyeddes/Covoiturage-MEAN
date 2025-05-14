@@ -6,6 +6,7 @@ import { routes } from './app.routes';
 import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'angular-highcharts';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ButtonModule,
     ChartModule,
     FontAwesomeModule,
+    HttpClientModule
   ],
   declarations: [],
   providers: [],
