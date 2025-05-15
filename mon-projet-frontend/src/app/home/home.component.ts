@@ -1,7 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // ← AJOUT ICI
+import { FormsModule } from '@angular/forms';
+import { ChatbotComponent } from '../components/chatbot/chatbot.component';
 interface Route {
   from: string;
   to: string;
@@ -12,7 +13,7 @@ interface Route {
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule, RouterModule, FormsModule], // ← AJOUT FormsModule ici
+  imports: [CommonModule, RouterModule, FormsModule, ChatbotComponent],
 })
 export class HomeComponent {
   @ViewChild('testimonialSlider', { static: false }) slider!: ElementRef;

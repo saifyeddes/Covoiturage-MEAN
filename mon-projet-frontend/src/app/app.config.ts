@@ -1,9 +1,11 @@
-// main.ts
-import { bootstrapApplication } from '@angular/platform-browser';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { RegisterComponent } from './auth/register/register.component';
+import { provideHttpClient } from '@angular/common/http';
 
-bootstrapApplication(RegisterComponent, {
-  providers: [provideRouter(routes)]
-}).catch(err => console.error(err));
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    provideHttpClient()
+  ]
+};
